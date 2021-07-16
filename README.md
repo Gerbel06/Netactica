@@ -7,6 +7,7 @@
 * SQL SERVER
 * Crear la base de datos Sql server mediante el script de las fuentes
 * Modificar el web.config por el usuario de su base de datos 
+* Compilar la solucion para que la web api genere las tablas para el manejo de usuario
 
 # Diagrama Entidad relacion 
 
