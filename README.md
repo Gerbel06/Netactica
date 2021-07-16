@@ -3,10 +3,10 @@
  
 
 # Requerimientos
-Visual Studio 2019
-SQL SERVER
-Crear la base de datos Sql server mediante el script de las fuentes
-Modificar el web.config por el usuario de su base de datos 
+-Visual Studio 2019
+-SQL SERVER
+-Crear la base de datos Sql server mediante el script de las fuentes
+-Modificar el web.config por el usuario de su base de datos 
 
 
 # Documentacion del APi
@@ -62,13 +62,13 @@ debe enviar el token en el header en el parametro Authorization @token_type + ""
 
 Para el parametro id column de la peticion tener en cuenta:
 
-1 IdReserva 
-2 IdVuelo
-3 FechaLlegada
-4 AeropuertoOrigen
-5 AeropuertoDestino
-6 Aerolinea
-7 IdCliente
- 8 Precio
+-1 IdReserva 
+-2 IdVuelo
+-3 FechaLlegada
+-4 AeropuertoOrigen
+-5 AeropuertoDestino
+-6 Aerolinea
+-7 IdCliente
+ -8 Precio
 
 ![image](https://user-images.githubusercontent.com/36347245/126009161-e1494f70-7f05-4187-a47d-af2a0f7b6e9b.png)
