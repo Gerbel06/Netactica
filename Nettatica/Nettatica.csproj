@@ -226,10 +226,12 @@
     <Compile Include="Models\DataModels\Vuelo.cs" />
     <Compile Include="Models\MError.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ReservaView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utilities\ClsProcedures.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />

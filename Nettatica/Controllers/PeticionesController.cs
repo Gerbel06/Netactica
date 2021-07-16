@@ -1,7 +1,9 @@
 ﻿using Nettatica.Models;
 using Nettatica.Models.DataModels;
+using Nettatica.Utilities;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
@@ -16,8 +18,9 @@ namespace Nettatica.Controllers
         private DataModel db = new DataModel();
 
         //POST: api/CreateVuelo
-       [ResponseType(typeof(MError))]
-        [Route("CreateVuelo/")]
+        [HttpPost]
+        [ResponseType(typeof(MError))]
+        [Route("api/CreateVuelo/")]
         public IHttpActionResult CreateVuelo(Vuelo vuelo)
         {
             if (!ModelState.IsValid)
@@ -43,6 +46,67 @@ namespace Nettatica.Controllers
             }
             return Ok(mError);
         }
+
+        [HttpPost]
+        [ResponseType(typeof(MError))]
+        [Route("api/CreateReserva/")]
+        public IHttpActionResult CreateReserva(Reserva reserva)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            MError mError = new MError();
+            if (!mError.Error)
+            {
+                try
+                {
+                    db.Reserva.Add(reserva);
+                    db.SaveChanges();
+                    mError.Mensaje = "El Vuelo se creo correctamente";
+                }
+                catch (DbUpdateException e)
+                {
+
+                    mError.Error = true;
+                    mError.Mensaje = "Ocurrio un error inesperado";
+                }
+            }
+            return Ok(mError);
+        }
+
+        [HttpGet]
+        [ResponseType(typeof(ReservaView))]
+        [Route("api/GetReserva/")]
+        public HttpResponseMessage GetReserva(int idReserva)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+            }
+            try
+            {
+                Reserva reserva = db.Reserva.Where(r => r.IdReserva == idReserva).FirstOrDefault();
+                if (reserva == null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, new MError() { Error = true, Mensaje = "No existe reserva con este id" });
+                }
+                DataTable table = null;
+                using (ClsProcedures procedimiento = new ClsProcedures())
+                {
+                    table = procedimiento.GetReservaView(1, idReserva.ToString());
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK, table);
+            }
+            catch(Exception e)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, new MError() { Error = true, Mensaje = "Ocurrio un error inesperado" }) ;
+            }
+        }
+
+
 
         public MError ValidarVuelo(Vuelo vuelo)
         {
@@ -91,8 +155,6 @@ namespace Nettatica.Controllers
             return error;
 
         }
-
-
 
         protected override void Dispose(bool disposing)
         {
