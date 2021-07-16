@@ -89,6 +89,10 @@ namespace Nettatica.Controllers
 
             try
             {
+                if (db.Aeropuerto.Where(a => a.Nombre == aeropuerto.Nombre).FirstOrDefault() != null)
+                {
+                    return Ok(new MError() { Error = true, Mensaje = "Ya existe un aeropuerto con este nombre" });
+                }
                 db.SaveChanges();
             }
             catch (DbUpdateException)

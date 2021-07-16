@@ -91,7 +91,7 @@ namespace Nettatica.Controllers
             {
                 if(db.Aerolinea.Where(a=>a.Nombre == aerolinea.Nombre).FirstOrDefault() != null)
                 {
-                    return Ok(new MError(){Error=true,Mensaje="Ya existe una aerolinea con este nombre"})
+                    return Ok(new MError() { Error = true, Mensaje = "Ya existe una aerolinea con este nombre" });
                 }
                 db.SaveChanges();
             }
