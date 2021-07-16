@@ -1,5 +1,6 @@
 namespace Nettatica.Models.DataModels
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -16,25 +17,29 @@ namespace Nettatica.Models.DataModels
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+
         public int IdVuelo { get; set; }
 
-        public TimeSpan HoraSalida { get; set; }
+        public DateTime FechaSalida { get; set; }
 
         public int AeropuertoOrigen { get; set; }
 
-        public TimeSpan HoraLlegada { get; set; }
+        public DateTime FechaLlegada { get; set; }
 
         public int AeropuertoDestino { get; set; }
 
-        public int Aerolinea { get; set; }
+        public int IdAerolinea { get; set; }
 
-        public virtual Aerolinea Aerolinea1 { get; set; }
+        [JsonIgnore]
+        public virtual Aerolinea Aerolinea { get; set; }
 
+        [JsonIgnore]
         public virtual Aeropuerto Aeropuerto { get; set; }
 
+        [JsonIgnore]
         public virtual Aeropuerto Aeropuerto1 { get; set; }
 
+        [JsonIgnore]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Reserva> Reserva { get; set; }
     }

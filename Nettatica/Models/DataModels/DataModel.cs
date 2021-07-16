@@ -25,20 +25,23 @@ namespace Nettatica.Models.DataModels
 
             modelBuilder.Entity<Aerolinea>()
                 .HasMany(e => e.Vuelo)
-                .WithRequired(e => e.Aerolinea1)
-                .HasForeignKey(e => e.Aerolinea)
+                .WithRequired(e => e.Aerolinea)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Aeropuerto>()
+                .Property(e => e.Nombre)
+                .IsFixedLength();
 
             modelBuilder.Entity<Aeropuerto>()
                 .HasMany(e => e.Vuelo)
                 .WithRequired(e => e.Aeropuerto)
-                .HasForeignKey(e => e.AeropuertoOrigen)
+                .HasForeignKey(e => e.AeropuertoDestino)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Aeropuerto>()
                 .HasMany(e => e.Vuelo1)
                 .WithRequired(e => e.Aeropuerto1)
-                .HasForeignKey(e => e.AeropuertoDestino)
+                .HasForeignKey(e => e.AeropuertoOrigen)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Reserva>()

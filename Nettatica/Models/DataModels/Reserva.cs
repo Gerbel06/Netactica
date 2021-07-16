@@ -1,5 +1,6 @@
 namespace Nettatica.Models.DataModels
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -10,7 +11,6 @@ namespace Nettatica.Models.DataModels
     public partial class Reserva
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int IdReserva { get; set; }
 
         public int IdVuelo { get; set; }
@@ -20,6 +20,7 @@ namespace Nettatica.Models.DataModels
         [Column(TypeName = "numeric")]
         public decimal Precio { get; set; }
 
+        [JsonIgnore]
         public virtual Vuelo Vuelo { get; set; }
     }
 }
