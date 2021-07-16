@@ -86,7 +86,7 @@ ALTER TABLE [dbo].[Vuelo] CHECK CONSTRAINT [FK_Vuelo_Aeropuerto1]
 
 GO
 CREATE View [dbo].[ReservaData] as 
-select res.IdReserva, vue.FechaLlegada,aerop.Nombre as AeropuertoOrigen, aerop2.Nombre as AeropuertoDestino,
+select res.IdReserva, res.IdVuelo, vue.FechaLlegada,aerop.Nombre as AeropuertoOrigen, aerop2.Nombre as AeropuertoDestino,
 			aerol.Nombre as Aerolinea, res.IdCliente, res.Precio from Aerolinea as aerol, Aeropuerto as aerop,Aeropuerto as aerop2, Reserva as res, Vuelo as vue
 	  where  vue.IdVuelo = res.IdVuelo and aerol.IdAerolinea = vue.IdAerolinea and aerop.IdAeropuerto=vue.AeropuertoOrigen and aerop2.IdAeropuerto=vue.AeropuertoDestino and aerol.IdAerolinea = vue.IdAerolinea;
 GO

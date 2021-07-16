@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
+using Nettatica.Models;
 using Nettatica.Models.DataModels;
 
 namespace Nettatica.Controllers
@@ -54,6 +55,10 @@ namespace Nettatica.Controllers
 
             try
             {
+                if (db.Aeropuerto.Where(a => a.Nombre == aeropuerto.Nombre && a.IdAeropuerto != id).FirstOrDefault() != null)
+                {
+                    return Ok(new MError() { Error = true, Mensaje = "Ya existe una aeropuerto con este nombre" });
+                }
                 db.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)

@@ -35,7 +35,7 @@ namespace Nettatica.Controllers
                 {
                     db.Vuelo.Add(vuelo);
                     db.SaveChanges();
-                    mError.Mensaje = "El Vuelo se creo correctamente";
+                    mError.Mensaje = "El Vuelo se creo correctamente con el id "+(vuelo.IdVuelo);
                 }
                 catch (DbUpdateException e)
                 {
@@ -64,7 +64,7 @@ namespace Nettatica.Controllers
                 {
                     db.Reserva.Add(reserva);
                     db.SaveChanges();
-                    mError.Mensaje = "El Vuelo se creo correctamente";
+                    mError.Mensaje = "La reserva se creo correctamente con el id " + (reserva.IdReserva);
                 }
                 catch (DbUpdateException e)
                 {
