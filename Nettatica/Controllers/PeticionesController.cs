@@ -106,6 +106,34 @@ namespace Nettatica.Controllers
             }
         }
 
+        [HttpGet]
+        [ResponseType(typeof(ReservaView))]
+        [Route("api/FilterReserva/")]
+        public HttpResponseMessage FilterReserva(int idcolumn, string value)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+            }
+            try
+            {
+                DataTable table = null;
+                using (ClsProcedures procedimiento = new ClsProcedures())
+                {
+                    table = procedimiento.GetReservaView(idcolumn, value);
+                }
+                if(table.Rows.Count == 0)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, new MError() { Error = true, Mensaje = "No hay datos de esta busqueda" });
+                }
+                return Request.CreateResponse(HttpStatusCode.OK, table);
+            }
+            catch (Exception e)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, new MError() { Error = true, Mensaje = "Ocurrio un error inesperado" });
+            }
+        }
+
 
 
         public MError ValidarVuelo(Vuelo vuelo)

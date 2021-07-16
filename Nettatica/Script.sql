@@ -112,6 +112,7 @@ declare @SQL_QUERY           NVARCHAR(max),
 		order by  column_id
 )
 
-	SET @SQL_QUERY = Concat('select * from ReservaData where ',@Columname,' =  ', @Value)
+	SET @SQL_QUERY = Concat('select * from ReservaData where ',@Columname,' =  ''', @Value,'''')
+	--print @SQL_QUERY
 	EXECUTE sp_executesql @SQL_QUERY;
 GO
