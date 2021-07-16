@@ -116,3 +116,8 @@ declare @SQL_QUERY           NVARCHAR(max),
 	--print @SQL_QUERY
 	EXECUTE sp_executesql @SQL_QUERY;
 GO
+INSERT [dbo].[Aerolinea] ([Nombre]) VALUES (N'Aerolinea1')
+INSERT [dbo].[Aerolinea] ([Nombre]) VALUES (N'Aerolinea2')
+INSERT [dbo].[Aeropuerto]  ([Nombre]) VALUES ( N'Aeropuerto1')
+INSERT [dbo].[Aeropuerto]  ([Nombre]) VALUES ( N'Aeropuerto2')
+GO

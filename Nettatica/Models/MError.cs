@@ -5,6 +5,9 @@ using System.Web;
 
 namespace Nettatica.Models
 {
+    /// <summary>
+    /// Se agrega el modelo MError para el manejo de errores del API
+    /// </summary>
     public class MError
     {
         public bool Error { get; set; }

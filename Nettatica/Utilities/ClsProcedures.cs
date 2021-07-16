@@ -11,6 +11,22 @@ namespace Nettatica.Utilities
         private bool disposing = false;
         private DataModel db = new DataModel();
 
+
+        /// <summary>
+        /// Traer datos de la vista filtando por una columnaid y un valor especifico
+        /// </summary>
+        /// <param name="idcolum"></param>
+        /// <param name="Value"></param>
+        /// idcolum
+        /// 1 IdReserva 
+        /// 2 IdVuelo
+        /// 3 FechaLlegada
+        /// 4 AeropuertoOrigen
+        /// 5 AeropuertoDestino
+        /// 6 Aerolinea
+        /// 7 IdCliente
+        /// 8 Precio
+        /// <returns></returns>
         public DataTable GetReservaView(int idcolum,string Value)
         {
             DataTable Result = new DataTable();
@@ -49,6 +65,10 @@ namespace Nettatica.Utilities
 
             return Result;
         }
+
+        /// <summary>
+        /// Liberacion de recursos
+        /// </summary>
 
         public void Dispose()
         {
