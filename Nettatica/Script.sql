@@ -1,89 +1,6 @@
-﻿USE [master]
+﻿USE [PruebaNetactica]
 GO
-/****** Object:  Database [PruebaNetactica]    Script Date: 15/07/2021 8:47:44 p. m. ******/
-CREATE DATABASE [PruebaNetactica]
- CONTAINMENT = NONE
- ON  PRIMARY 
-( NAME = N'PruebaNetactica', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\DATA\PruebaNetactica.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
- LOG ON 
-( NAME = N'PruebaNetactica_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\DATA\PruebaNetactica_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
- WITH CATALOG_COLLATION = DATABASE_DEFAULT
-GO
-ALTER DATABASE [PruebaNetactica] SET COMPATIBILITY_LEVEL = 150
-GO
-IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
-begin
-EXEC [PruebaNetactica].[dbo].[sp_fulltext_database] @action = 'enable'
-end
-GO
-ALTER DATABASE [PruebaNetactica] SET ANSI_NULL_DEFAULT OFF 
-GO
-ALTER DATABASE [PruebaNetactica] SET ANSI_NULLS OFF 
-GO
-ALTER DATABASE [PruebaNetactica] SET ANSI_PADDING OFF 
-GO
-ALTER DATABASE [PruebaNetactica] SET ANSI_WARNINGS OFF 
-GO
-ALTER DATABASE [PruebaNetactica] SET ARITHABORT OFF 
-GO
-ALTER DATABASE [PruebaNetactica] SET AUTO_CLOSE OFF 
-GO
-ALTER DATABASE [PruebaNetactica] SET AUTO_SHRINK OFF 
-GO
-ALTER DATABASE [PruebaNetactica] SET AUTO_UPDATE_STATISTICS ON 
-GO
-ALTER DATABASE [PruebaNetactica] SET CURSOR_CLOSE_ON_COMMIT OFF 
-GO
-ALTER DATABASE [PruebaNetactica] SET CURSOR_DEFAULT  GLOBAL 
-GO
-ALTER DATABASE [PruebaNetactica] SET CONCAT_NULL_YIELDS_NULL OFF 
-GO
-ALTER DATABASE [PruebaNetactica] SET NUMERIC_ROUNDABORT OFF 
-GO
-ALTER DATABASE [PruebaNetactica] SET QUOTED_IDENTIFIER OFF 
-GO
-ALTER DATABASE [PruebaNetactica] SET RECURSIVE_TRIGGERS OFF 
-GO
-ALTER DATABASE [PruebaNetactica] SET  DISABLE_BROKER 
-GO
-ALTER DATABASE [PruebaNetactica] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
-GO
-ALTER DATABASE [PruebaNetactica] SET DATE_CORRELATION_OPTIMIZATION OFF 
-GO
-ALTER DATABASE [PruebaNetactica] SET TRUSTWORTHY OFF 
-GO
-ALTER DATABASE [PruebaNetactica] SET ALLOW_SNAPSHOT_ISOLATION OFF 
-GO
-ALTER DATABASE [PruebaNetactica] SET PARAMETERIZATION SIMPLE 
-GO
-ALTER DATABASE [PruebaNetactica] SET READ_COMMITTED_SNAPSHOT OFF 
-GO
-ALTER DATABASE [PruebaNetactica] SET HONOR_BROKER_PRIORITY OFF 
-GO
-ALTER DATABASE [PruebaNetactica] SET RECOVERY FULL 
-GO
-ALTER DATABASE [PruebaNetactica] SET  MULTI_USER 
-GO
-ALTER DATABASE [PruebaNetactica] SET PAGE_VERIFY CHECKSUM  
-GO
-ALTER DATABASE [PruebaNetactica] SET DB_CHAINING OFF 
-GO
-ALTER DATABASE [PruebaNetactica] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
-GO
-ALTER DATABASE [PruebaNetactica] SET TARGET_RECOVERY_TIME = 60 SECONDS 
-GO
-ALTER DATABASE [PruebaNetactica] SET DELAYED_DURABILITY = DISABLED 
-GO
-EXEC sys.sp_db_vardecimal_storage_format N'PruebaNetactica', N'ON'
-GO
-ALTER DATABASE [PruebaNetactica] SET QUERY_STORE = OFF
-GO
-USE [PruebaNetactica]
-GO
-/****** Object:  User [gerbel]    Script Date: 15/07/2021 8:47:44 p. m. ******/
-CREATE USER [gerbel] FOR LOGIN [gerbel] WITH DEFAULT_SCHEMA=[dbo]
-GO
-/****** Object:  Table [dbo].[Aerolinea]    Script Date: 15/07/2021 8:47:44 p. m. ******/
+/****** Object:  Table [dbo].[Aerolinea]    Script Date: 15/07/2021 10:04:34 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -97,7 +14,7 @@ CREATE TABLE [dbo].[Aerolinea](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Aeropuerto]    Script Date: 15/07/2021 8:47:44 p. m. ******/
+/****** Object:  Table [dbo].[Aeropuerto]    Script Date: 15/07/2021 10:04:34 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -111,7 +28,7 @@ CREATE TABLE [dbo].[Aeropuerto](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Reserva]    Script Date: 15/07/2021 8:47:44 p. m. ******/
+/****** Object:  Table [dbo].[Reserva]    Script Date: 15/07/2021 10:04:34 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -127,7 +44,7 @@ CREATE TABLE [dbo].[Reserva](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Vuelo]    Script Date: 15/07/2021 8:47:44 p. m. ******/
+/****** Object:  Table [dbo].[Vuelo]    Script Date: 15/07/2021 10:04:34 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -164,8 +81,4 @@ ALTER TABLE [dbo].[Vuelo]  WITH CHECK ADD  CONSTRAINT [FK_Vuelo_Aeropuerto1] FOR
 REFERENCES [dbo].[Aeropuerto] ([IdAeropuerto])
 GO
 ALTER TABLE [dbo].[Vuelo] CHECK CONSTRAINT [FK_Vuelo_Aeropuerto1]
-GO
-USE [master]
-GO
-ALTER DATABASE [PruebaNetactica] SET  READ_WRITE 
 GO
