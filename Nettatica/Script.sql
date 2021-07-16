@@ -1,123 +1,40 @@
-﻿USE [master]
+﻿USE [PruebaNetactica]
 GO
-/****** Object:  Database [PruebaNetactica]    Script Date: 15/07/2021 8:47:44 p. m. ******/
-CREATE DATABASE [PruebaNetactica]
- CONTAINMENT = NONE
- ON  PRIMARY 
-( NAME = N'PruebaNetactica', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\DATA\PruebaNetactica.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
- LOG ON 
-( NAME = N'PruebaNetactica_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\DATA\PruebaNetactica_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
- WITH CATALOG_COLLATION = DATABASE_DEFAULT
-GO
-ALTER DATABASE [PruebaNetactica] SET COMPATIBILITY_LEVEL = 150
-GO
-IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
-begin
-EXEC [PruebaNetactica].[dbo].[sp_fulltext_database] @action = 'enable'
-end
-GO
-ALTER DATABASE [PruebaNetactica] SET ANSI_NULL_DEFAULT OFF 
-GO
-ALTER DATABASE [PruebaNetactica] SET ANSI_NULLS OFF 
-GO
-ALTER DATABASE [PruebaNetactica] SET ANSI_PADDING OFF 
-GO
-ALTER DATABASE [PruebaNetactica] SET ANSI_WARNINGS OFF 
-GO
-ALTER DATABASE [PruebaNetactica] SET ARITHABORT OFF 
-GO
-ALTER DATABASE [PruebaNetactica] SET AUTO_CLOSE OFF 
-GO
-ALTER DATABASE [PruebaNetactica] SET AUTO_SHRINK OFF 
-GO
-ALTER DATABASE [PruebaNetactica] SET AUTO_UPDATE_STATISTICS ON 
-GO
-ALTER DATABASE [PruebaNetactica] SET CURSOR_CLOSE_ON_COMMIT OFF 
-GO
-ALTER DATABASE [PruebaNetactica] SET CURSOR_DEFAULT  GLOBAL 
-GO
-ALTER DATABASE [PruebaNetactica] SET CONCAT_NULL_YIELDS_NULL OFF 
-GO
-ALTER DATABASE [PruebaNetactica] SET NUMERIC_ROUNDABORT OFF 
-GO
-ALTER DATABASE [PruebaNetactica] SET QUOTED_IDENTIFIER OFF 
-GO
-ALTER DATABASE [PruebaNetactica] SET RECURSIVE_TRIGGERS OFF 
-GO
-ALTER DATABASE [PruebaNetactica] SET  DISABLE_BROKER 
-GO
-ALTER DATABASE [PruebaNetactica] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
-GO
-ALTER DATABASE [PruebaNetactica] SET DATE_CORRELATION_OPTIMIZATION OFF 
-GO
-ALTER DATABASE [PruebaNetactica] SET TRUSTWORTHY OFF 
-GO
-ALTER DATABASE [PruebaNetactica] SET ALLOW_SNAPSHOT_ISOLATION OFF 
-GO
-ALTER DATABASE [PruebaNetactica] SET PARAMETERIZATION SIMPLE 
-GO
-ALTER DATABASE [PruebaNetactica] SET READ_COMMITTED_SNAPSHOT OFF 
-GO
-ALTER DATABASE [PruebaNetactica] SET HONOR_BROKER_PRIORITY OFF 
-GO
-ALTER DATABASE [PruebaNetactica] SET RECOVERY FULL 
-GO
-ALTER DATABASE [PruebaNetactica] SET  MULTI_USER 
-GO
-ALTER DATABASE [PruebaNetactica] SET PAGE_VERIFY CHECKSUM  
-GO
-ALTER DATABASE [PruebaNetactica] SET DB_CHAINING OFF 
-GO
-ALTER DATABASE [PruebaNetactica] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
-GO
-ALTER DATABASE [PruebaNetactica] SET TARGET_RECOVERY_TIME = 60 SECONDS 
-GO
-ALTER DATABASE [PruebaNetactica] SET DELAYED_DURABILITY = DISABLED 
-GO
-EXEC sys.sp_db_vardecimal_storage_format N'PruebaNetactica', N'ON'
-GO
-ALTER DATABASE [PruebaNetactica] SET QUERY_STORE = OFF
-GO
-USE [PruebaNetactica]
-GO
-/****** Object:  User [gerbel]    Script Date: 15/07/2021 8:47:44 p. m. ******/
-CREATE USER [gerbel] FOR LOGIN [gerbel] WITH DEFAULT_SCHEMA=[dbo]
-GO
-/****** Object:  Table [dbo].[Aerolinea]    Script Date: 15/07/2021 8:47:44 p. m. ******/
+
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Aerolinea](
-	[IdAerolinea] [int] NOT NULL,
-	[Nombre] [nchar](20) NOT NULL,
+	[IdAerolinea] [int]  IDENTITY(1,1) PRIMARY KEY,
+	[Nombre] [nvarchar](50) NOT NULL,
  CONSTRAINT [PK_Aerolinea] PRIMARY KEY CLUSTERED 
 (
 	[IdAerolinea] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Aeropuerto]    Script Date: 15/07/2021 8:47:44 p. m. ******/
+
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Aeropuerto](
-	[IdAeropuerto] [int] NOT NULL,
-	[Nombre] [int] NOT NULL,
+	[IdAeropuerto] [int] IDENTITY(1,1) PRIMARY KEY,
+	[Nombre] [nvarchar](50) NOT NULL,
  CONSTRAINT [PK_Aeropuerto] PRIMARY KEY CLUSTERED 
 (
 	[IdAeropuerto] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Reserva]    Script Date: 15/07/2021 8:47:44 p. m. ******/
+
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Reserva](
-	[IdReserva] [int] NOT NULL,
+	[IdReserva] [int]  IDENTITY(1,1) PRIMARY KEY,
 	[IdVuelo] [int] NOT NULL,
 	[IdCliente] [int] NOT NULL,
 	[Precio] [numeric](18, 0) NOT NULL,
@@ -127,45 +44,80 @@ CREATE TABLE [dbo].[Reserva](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Vuelo]    Script Date: 15/07/2021 8:47:44 p. m. ******/
+
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Vuelo](
-	[IdVuelo] [int] NOT NULL,
-	[HoraSalida] [time](7) NOT NULL,
+	[IdVuelo] [int]  IDENTITY(1,1) PRIMARY KEY,
+	[FechaSalida] [datetime] NOT NULL,
 	[AeropuertoOrigen] [int] NOT NULL,
-	[HoraLlegada] [time](7) NOT NULL,
+	[FechaLlegada] [datetime] NOT NULL,
 	[AeropuertoDestino] [int] NOT NULL,
-	[Aerolinea] [int] NOT NULL,
+	[IdAerolinea] [int] NOT NULL,
  CONSTRAINT [PK_Vuelo] PRIMARY KEY CLUSTERED 
 (
 	[IdVuelo] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
+
 ALTER TABLE [dbo].[Reserva]  WITH CHECK ADD  CONSTRAINT [FK_Reserva_Vuelo] FOREIGN KEY([IdVuelo])
 REFERENCES [dbo].[Vuelo] ([IdVuelo])
 GO
 ALTER TABLE [dbo].[Reserva] CHECK CONSTRAINT [FK_Reserva_Vuelo]
 GO
-ALTER TABLE [dbo].[Vuelo]  WITH CHECK ADD  CONSTRAINT [FK_Vuelo_Aerolinea] FOREIGN KEY([Aerolinea])
+ALTER TABLE [dbo].[Vuelo]  WITH CHECK ADD  CONSTRAINT [FK_Vuelo_Aerolinea] FOREIGN KEY([IdAerolinea])
 REFERENCES [dbo].[Aerolinea] ([IdAerolinea])
 GO
 ALTER TABLE [dbo].[Vuelo] CHECK CONSTRAINT [FK_Vuelo_Aerolinea]
 GO
-ALTER TABLE [dbo].[Vuelo]  WITH CHECK ADD  CONSTRAINT [FK_Vuelo_Aeropuerto] FOREIGN KEY([AeropuertoOrigen])
+ALTER TABLE [dbo].[Vuelo]  WITH CHECK ADD  CONSTRAINT [FK_Vuelo_Aeropuerto] FOREIGN KEY([AeropuertoDestino])
 REFERENCES [dbo].[Aeropuerto] ([IdAeropuerto])
 GO
 ALTER TABLE [dbo].[Vuelo] CHECK CONSTRAINT [FK_Vuelo_Aeropuerto]
 GO
-ALTER TABLE [dbo].[Vuelo]  WITH CHECK ADD  CONSTRAINT [FK_Vuelo_Aeropuerto1] FOREIGN KEY([AeropuertoDestino])
+ALTER TABLE [dbo].[Vuelo]  WITH CHECK ADD  CONSTRAINT [FK_Vuelo_Aeropuerto1] FOREIGN KEY([AeropuertoOrigen])
 REFERENCES [dbo].[Aeropuerto] ([IdAeropuerto])
 GO
 ALTER TABLE [dbo].[Vuelo] CHECK CONSTRAINT [FK_Vuelo_Aeropuerto1]
+
 GO
-USE [master]
+CREATE View [dbo].[ReservaData] as 
+select res.IdReserva, res.IdVuelo, vue.FechaLlegada,aerop.Nombre as AeropuertoOrigen, aerop2.Nombre as AeropuertoDestino,
+			aerol.Nombre as Aerolinea, res.IdCliente, res.Precio from Aerolinea as aerol, Aeropuerto as aerop,Aeropuerto as aerop2, Reserva as res, Vuelo as vue
+	  where  vue.IdVuelo = res.IdVuelo and aerol.IdAerolinea = vue.IdAerolinea and aerop.IdAeropuerto=vue.AeropuertoOrigen and aerop2.IdAeropuerto=vue.AeropuertoDestino and aerol.IdAerolinea = vue.IdAerolinea;
 GO
-ALTER DATABASE [PruebaNetactica] SET  READ_WRITE 
+
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[FilterDataView]
+  @Value				VARCHAR(50), 
+  @Column				INT 
+
+AS
+declare @SQL_QUERY           NVARCHAR(max),
+	 @Columname NVARCHAR(max) = (
+    SELECT TOP 1 c.name as columname 
+	from sys.columns c
+	join sys.views v 
+		 on v.object_id = c.object_id
+		 where  c.column_id = @Column
+		 and object_name(c.object_id)= 'ReservaData'
+		order by  column_id
+)
+
+	SET @SQL_QUERY = Concat('select * from ReservaData where ',@Columname,' =  ''', @Value,'''')
+	--print @SQL_QUERY
+	EXECUTE sp_executesql @SQL_QUERY;
+GO
+INSERT [dbo].[Aerolinea] ([Nombre]) VALUES (N'Aerolinea1')
+INSERT [dbo].[Aerolinea] ([Nombre]) VALUES (N'Aerolinea2')
+INSERT [dbo].[Aeropuerto]  ([Nombre]) VALUES ( N'Aeropuerto1')
+INSERT [dbo].[Aeropuerto]  ([Nombre]) VALUES ( N'Aeropuerto2')
 GO

@@ -17,6 +17,13 @@ using Nettatica.Models;
 using Nettatica.Providers;
 using Nettatica.Results;
 
+/*
+    La clase principal de AccountController
+    Contiene todos los metodos generados por .net para hacer uso de seguridad JWT mediante una cuenta externa
+*/
+
+
+
 namespace Nettatica.Controllers
 {
     [Authorize]
