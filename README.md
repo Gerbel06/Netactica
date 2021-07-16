@@ -8,6 +8,11 @@
 * Crear la base de datos Sql server mediante el script de las fuentes
 * Modificar el web.config por el usuario de su base de datos 
 
+# Diagrama Entidad relacion 
+
+![image](https://user-images.githubusercontent.com/36347245/126010507-f50e4612-3c84-47a1-b88d-e3bdceb77533.png)
+
+NOTA: Se cambian los campos de hora de la prueba por campos para tener la fecha, se agrega una tabla reserva, para poderle enlazar los clientes correspondientes de la reserva y mas parametros como pueden ser un estado o el tipo de equipaje o otras cuestiones relacionas.
 
 # Documentacion del APi
 
