@@ -1,5 +1,5 @@
-# Prueba NETACTICA 
- NETACTICA - Gerardo Beltran Pulido
+# Prueba
+Gerardo Beltran Pulido
  
 
 # Requerimientos
